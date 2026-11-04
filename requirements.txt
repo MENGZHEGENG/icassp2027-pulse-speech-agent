@@ -1,0 +1,13 @@
+numpy>=1.24
+tqdm>=4.66
+pyyaml>=6.0
+pytest>=8.0
+torch
+transformers>=4.40
+datasets>=2.18
+soundfile>=0.12
+librosa>=0.10
+jiwer>=3.0
+evaluate>=0.4
+accelerate>=0.30
+peft>=0.11

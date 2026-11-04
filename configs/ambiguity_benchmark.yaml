@@ -1,0 +1,16 @@
+seed: 20270817
+templates:
+  call_contact: "Call {entity} about the project update."
+  send_email: "Send an email to {entity} with the meeting notes."
+  retrieve_file: "Find the file named {entity}."
+  transfer_money: "Transfer twenty dollars to {entity}."
+  schedule_meeting: "Schedule a meeting with {entity} tomorrow morning."
+confusable_entities:
+  - ["shawn", "sean"]
+  - ["john smith", "jane smith"]
+  - ["mira patel", "meera patel"]
+  - ["account four", "account for"]
+  - ["geneva", "jen eva"]
+  - ["liu wei", "louis way"]
+  - ["nrc report", "an rc report"]
+  - ["q route", "queue route"]

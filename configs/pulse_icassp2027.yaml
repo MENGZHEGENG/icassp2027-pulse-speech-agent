@@ -1,0 +1,52 @@
+project: pulse-speech-agent
+seed: 20270817
+data:
+  benchmark_records: data/ambiguous_tasks.jsonl
+  librispeech_records: data/librispeech_test_clean.jsonl
+  fluent_speech_commands_dir: data/public_slu/fluent_speech_commands
+model:
+  name: openai/whisper-small
+  fallback_names:
+    - openai/whisper-tiny
+    - openai/whisper-base
+  num_beams: 5
+  num_return_sequences: 5
+  max_samples: 2000
+policy:
+  entropy_threshold: 1.1
+  instability_threshold: 0.28
+  entity_risk_threshold: 0.75
+  clarify_cost: 0.15
+comparator_suite:
+  threshold_selection: held_out_speaker_or_noise_split
+  baselines:
+    - single_best_transcript_agent
+    - ask_every_entity_bearing_command
+    - scalar_asr_confidence_threshold
+    - slot_entity_confidence_threshold
+    - calibrated_confidence_only_policy
+    - fused_asr_confidence_threshold
+    - nbest_entropy_self_consistency
+    - reflection_over_transcript_alternatives
+    - cause_aware_asr_llm_clarification
+    - oracle_clarification_trigger
+  recognizer_controls:
+    - standard_whisper_backbone_scale
+    - contextual_proper_noun_prompting
+    - domain_shift_adapted_asr
+    - open_phonetic_backbone_or_phone_agreement
+application_scenarios:
+  - entity_bearing_tool_call
+  - retrieval_key_selection
+  - safety_critical_confirmation
+  - streaming_prefix_decision
+  - noisy_mobile_condition
+metrics:
+  - wer
+  - cer
+  - entity_error_rate
+  - uncertainty_auroc
+  - expected_calibration_error
+  - task_success
+  - wrong_action_rate
+  - clarification_rate
